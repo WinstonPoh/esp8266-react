@@ -9,23 +9,23 @@
 #define LIGHT_BROKER_SETTINGS_PATH "/rest/brokerSettings"
 
 class LightMqttSettings {
- public:
-  String mqttPath;
-  String name;
-  String uniqueId;
+    public:
+        String mqttPath;
+        String name;
+        String uniqueId;
 
-  static void read(LightMqttSettings& settings, JsonObject& root) {
-    root["mqtt_path"] = settings.mqttPath;
-    root["name"] = settings.name;
-    root["unique_id"] = settings.uniqueId;
-  }
+        static void read(LightMqttSettings& settings, JsonObject& root) {
+            root["mqtt_path"] = settings.mqttPath;
+            root["name"] = settings.name;
+            root["unique_id"] = settings.uniqueId;
+        }
 
-  static StateUpdateResult update(JsonObject& root, LightMqttSettings& settings) {
-    settings.mqttPath = root["mqtt_path"] | ESPUtils::defaultDeviceValue("homeassistant/light/");
-    settings.name = root["name"] | ESPUtils::defaultDeviceValue("light-");
-    settings.uniqueId = root["unique_id"] | ESPUtils::defaultDeviceValue("light-");
-    return StateUpdateResult::CHANGED;
-  }
+    static StateUpdateResult update(JsonObject& root, LightMqttSettings& settings) {
+        settings.mqttPath = root["mqtt_path"] | ESPUtils::defaultDeviceValue("homeassistant/light/");
+        settings.name = root["name"] | ESPUtils::defaultDeviceValue("light-");
+        settings.uniqueId = root["unique_id"] | ESPUtils::defaultDeviceValue("light-");
+        return StateUpdateResult::CHANGED;
+    }
 };
 
 class LightMqttSettingsService : public StatefulService<LightMqttSettings> {

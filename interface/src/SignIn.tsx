@@ -24,7 +24,7 @@ const styles = (theme: Theme) => createStyles({
     textAlign: "center",
     padding: theme.spacing(2),
     paddingTop: "200px",
-    backgroundImage: 'url("/app/icon.png")',
+    backgroundImage: 'url("/app/kiwi_260_260.png")',
     backgroundRepeat: "no-repeat",
     backgroundPosition: "50% " + theme.spacing(2) + "px",
     backgroundSize: "auto 150px",

@@ -2,7 +2,7 @@
   "name":"ESP8266 React",
   "icons":[
     {
-      "src":"/app/icon.png",
+      "src":"/app/kiwi_260_260.png",
       "sizes":"48x48 72x72 96x96 128x128 256x256"
     }
   ],
