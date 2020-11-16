@@ -55,7 +55,7 @@ function LightStateRestControllerForm(props: LightStateRestControllerFormProps) 
             color="primary"
           />
         }
-        label="LED State?"
+        label={data.led_brightness}
       />
       <FormActions>
         <FormButton startIcon={<SaveIcon />} variant="contained" color="primary" type="submit">

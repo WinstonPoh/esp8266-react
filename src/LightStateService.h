@@ -11,6 +11,9 @@
 #define PRINT_DELAY 5000
 
 #define DEFAULT_LED_STATE false
+#define DEFAULT_BRIGHTNESS 255
+// max  brightness should be  0 - 100 %
+#define DEFAULT_MAX_BRIGHTNESS 100
 #define OFF_STATE "OFF"
 #define ON_STATE "ON"
 
@@ -30,15 +33,23 @@
 class LightState {
  public:
   bool ledOn;
+  uint8_t ledBrightness;
+  uint8_t maxBrightness;
 
   static void read(LightState& settings, JsonObject& root) {
     root["led_on"] = settings.ledOn;
+    root["led_brightness"] = settings.ledBrightness;
+    root["max_brightness"] = settings.maxBrightness;
   }
 
   static StateUpdateResult update(JsonObject& root, LightState& lightState) {
     boolean newState = root["led_on"] | DEFAULT_LED_STATE;
-    if (lightState.ledOn != newState) {
+    uint8_t newBrightness = root["led_brightness"] | DEFAULT_BRIGHTNESS;
+    uint8_t newMaxBrightness = root["max_brightness"] | DEFAULT_MAX_BRIGHTNESS;
+    if (lightState.ledOn != newState || lightState.ledBrightness != newBrightness || lightState.maxBrightness != newMaxBrightness) {
       lightState.ledOn = newState;
+      lightState.ledBrightness = newBrightness;
+      lightState.maxBrightness = newMaxBrightness;
       return StateUpdateResult::CHANGED;
     }
     return StateUpdateResult::UNCHANGED;

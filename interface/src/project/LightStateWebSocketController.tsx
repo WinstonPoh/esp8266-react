@@ -37,7 +37,8 @@ function LightStateWebSocketControllerForm(props: LightStateWebSocketControllerF
   const { data, saveData, setData } = props;
 
   const changeLedOn = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ led_on: event.target.checked }, saveData);
+    setData({ led_on: event.target.checked, led_brightness: event.target.value, max_brightness: '100' }, saveData);
+    // setData({ led_on: event.target.checked }, saveData);
   }
 
   return (

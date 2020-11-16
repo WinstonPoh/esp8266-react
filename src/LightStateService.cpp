@@ -1,4 +1,5 @@
 #include <LightStateService.h>
+#include "LED_helpers/fade.h"
 
 LightStateService::LightStateService(AsyncWebServer* server,
                                      SecurityManager* securityManager,
@@ -36,11 +37,26 @@ LightStateService::LightStateService(AsyncWebServer* server,
 
 void LightStateService::begin() {
   _state.ledOn = DEFAULT_LED_STATE;
+  _state.ledBrightness = DEFAULT_BRIGHTNESS;
+  _state.maxBrightness = DEFAULT_MAX_BRIGHTNESS;
+  // Serial.begin(115200);
   onConfigUpdated();
 }
 
 void LightStateService::onConfigUpdated() {
-  digitalWrite(LED_PIN, _state.ledOn ? LED_ON : LED_OFF);
+  // digitalWrite(LED_PIN, _state.ledOn ? LED_ON : LED_OFF);
+  // int val = map((int) _state.ledBrightness, 0, 100, 0, 1024);
+  // Serial.print((int) _state.ledBrightness);
+  // Serial.println("%");
+  // Serial.print(val);
+  // Serial.println("#");
+  if (_state.ledOn ){
+    soft_on(&_state, 1000);
+  }
+  else {
+    // analogWrite(LED_PIN, 1000);
+    soft_off(&_state, 1000);
+  }
 }
 
 void LightStateService::registerConfig() {
