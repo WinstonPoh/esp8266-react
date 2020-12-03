@@ -54,7 +54,7 @@ void LightStateService::onConfigUpdated() {
     soft_on(&_state, 1000);
   }
   else {
-    // analogWrite(LED_PIN, 1000);
+    
     soft_off(&_state, 1000);
   }
 }

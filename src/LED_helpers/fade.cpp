@@ -1,5 +1,4 @@
 /* Fade.cpp helper functions to soft on or soft off LEDs. For esp8266 */
-
 #include "fade.h"
 #include <LightStateService.h>
 float mapfloat(float x, float in_min, float in_max, float out_min, float out_max) {
@@ -45,7 +44,7 @@ void soft_on(LightState* light_state, int time_to_on) {
       
       if (current_millis - previous_millis >= time_delta) {
         previous_millis = current_millis;
-        value -= logistic(total_time, light_state->maxBrightness);
+        value -= logistic(total_time, light_state->ledBrightness);
         total_time += time_delta;
       //   analogWrite(LED_BUILTIN, value);
         analogWrite(LED_PIN, value);

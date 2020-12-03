@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ValidatorForm } from 'react-material-ui-form-validator';
 
-import { Typography, Box, Switch } from '@material-ui/core';
+import { Typography, Box, Switch, Slider } from '@material-ui/core';
 import { WEB_SOCKET_ROOT } from '../api';
 import { WebSocketControllerProps, WebSocketFormLoader, WebSocketFormProps, webSocketController } from '../components';
 import { SectionContent, BlockFormControlLabel } from '../components';
@@ -32,12 +32,14 @@ class LightStateWebSocketController extends Component<LightStateWebSocketControl
 export default webSocketController(LIGHT_SETTINGS_WEBSOCKET_URL, 100, LightStateWebSocketController);
 
 type LightStateWebSocketControllerFormProps = WebSocketFormProps<LightState>;
-
+function valuetext(value: number) {
+  return `${value}`;
+}
 function LightStateWebSocketControllerForm(props: LightStateWebSocketControllerFormProps) {
   const { data, saveData, setData } = props;
 
-  const changeLedOn = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ led_on: event.target.checked, led_brightness: event.target.value, max_brightness: '100' }, saveData);
+  const changeLedOn = (event: any, newValue: number | number[]) => {
+    setData({ led_on: event.target.checked, led_brightness: String(newValue), max_brightness: '100' }, saveData);
     // setData({ led_on: event.target.checked }, saveData);
   }
 
@@ -50,12 +52,26 @@ function LightStateWebSocketControllerForm(props: LightStateWebSocketControllerF
       </Box>
       <BlockFormControlLabel
         control={
-          <Switch
-            checked={data.led_on}
-            onChange={changeLedOn}
-            color="primary"
+          <Slider
+              defaultValue={30}
+              value={parseInt(data.led_brightness)}
+              onChange={changeLedOn}
+              getAriaValueText={valuetext}
+              aria-labelledby="discrete-slider"
+              valueLabelDisplay="auto"
+              step={10}
+              marks
+              min={10}
+              max={110}
           />
         }
+        // control={
+        //   <Switch
+        //     checked={data.led_on}
+        //     onChange={changeLedOn}
+        //     color="primary"
+        //   />
+        // }
         label="LED State?"
       />
     </ValidatorForm>

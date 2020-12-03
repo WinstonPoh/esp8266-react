@@ -7,7 +7,7 @@ import UnauthenticatedRoute from './authentication/UnauthenticatedRoute';
 import AuthenticatedRoute from './authentication/AuthenticatedRoute';
 
 import SignIn from './SignIn';
-import ProjectRouting from './project/ProjectRouting';
+import ProjectRouting from './mydearies/ProjectRouting';
 import WiFiConnection from './wifi/WiFiConnection';
 import AccessPoint from './ap/AccessPoint';
 import NetworkTime from './ntp/NetworkTime';

@@ -17,7 +17,7 @@ import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 import LockIcon from '@material-ui/icons/Lock';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import ProjectMenu from '../project/ProjectMenu';
+import ProjectMenu from '../mydearies/ProjectMenu';
 import { PROJECT_NAME } from '../api';
 import { withAuthenticatedContext, AuthenticatedContextProps } from '../authentication';
 import { withFeatures, WithFeaturesProps } from '../features/FeaturesContext';
