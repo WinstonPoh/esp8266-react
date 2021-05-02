@@ -7,3 +7,5 @@
 /interface/build
 /interface/node_modules
 .vscode
+factory_settings.ini
+interface/.env
